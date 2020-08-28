@@ -5,10 +5,22 @@ import Card from "./components/layout/Card";
 import ComFilhos from "./components/ComFilhos";
 import ComParametro from "./components/ComParametro";
 import Primeiro from "./components/Primeiro";
+import Repeticao from "./components/Repeticao";
+import Condicional from "./components/Condicional";
 
 export default (props) => (
   <div className="App">
     
+    <Card titulo="#05 - Condicional v1">
+      <Condicional numero={10} />
+      <br/>
+      <Condicional numero={5} />
+    </Card>
+
+    <Card titulo="#04 - Repetição">
+      <Repeticao />
+    </Card>
+
     <Card titulo="#03 - Componente Com Filhos">
       <ComFilhos>
         <ul>
