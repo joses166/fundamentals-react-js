@@ -1,49 +1,29 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
-export default class MegaSena extends Component {
-
-    state = {
-        nro1: 0,
-        nro2: 0,
-        nro3: 0,
-        nro4: 0,
-        nro5: 0,
-        nro6: 0
+export default (props) => {
+    // Adiciona a quantidade de valores do array com valor inicial de cada um
+    const [numeros, setNumeros] = useState(Array(props.qtdeNumeros || 6).fill(0)) 
+    
+    function gerarNumerosNaoContido(array) {
+        const min = 1
+        const max = 60
+        const novoNumero = parseInt(Math.random() * (max - min)) + min
+        return array.includes(novoNumero) ? gerarNumerosNaoContido(array) : novoNumero
     }
 
-    onGenerate = () => {
-        this.setState({
-            nro1: parseInt(Math.random() * 100),
-            nro2: parseInt(Math.random() * 100),
-            nro3: parseInt(Math.random() * 100),
-            nro4: parseInt(Math.random() * 100),
-            nro5: parseInt(Math.random() * 100),
-            nro6: parseInt(Math.random() * 100)
-        })
+    function gerarNumeros() {
+        const novoArray = Array(props.qtdeNumeros)
+                            .fill(0)
+                            .reduce(a => [...a, gerarNumerosNaoContido(a)], [])
+                            .sort((a, b) => a - b) // Ordem crescente
+        setNumeros(novoArray);
     }
 
-    render() {
-        return (
-            <div className="megaSena">
-
-                <h2> Mega Sena </h2>
-                <p>
-                    {
-                        `
-                        ${ this.state.nro1} - 
-                        ${ this.state.nro2} - 
-                        ${ this.state.nro3} - 
-                        ${ this.state.nro4} - 
-                        ${ this.state.nro5} - 
-                        ${ this.state.nro6} 
-                        `
-                    }
-                </p>
-
-                <button onClick={this.onGenerate}> Gerar Números </button>
-
-            </div>
-        )
-    }
-
+    return (
+        <>
+            <h3>Mega Sena</h3>
+            <h4>{numeros.join(' ')}</h4>
+            <button onClick={gerarNumeros}>Gerar Números</button>
+        </>
+    )
 }

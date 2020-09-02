@@ -21,7 +21,7 @@ export default (props) => (
 
     <div className="Cards">
       <Card titulo="#11 - Mega Sena" color={"#ADFF2F"}>
-        <MegaSena />
+        <MegaSena qtdeNumeros={8} />
       </Card>
 
       <Card titulo="#10 - Contador" color={"#6C8672"}>

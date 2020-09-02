@@ -3,7 +3,7 @@ import React from 'react'
 export default props => {
     return (
         <div>
-            <label for="passoInput">Passo: </label>
+            <label htmlFor="passoInput">Passo: </label>
             {/** O + faz com que seja atribuído em numérico o valor */}
             <input
                 id="passoInput"
